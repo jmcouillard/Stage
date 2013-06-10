@@ -33,6 +33,7 @@ public class Stage extends PApplet implements WindowFocusListener {
 
 	private String[] shaderFiles;
 	private int currentShader;
+	
 
 	public void setup() {
 
