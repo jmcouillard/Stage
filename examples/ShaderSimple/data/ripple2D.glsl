@@ -28,7 +28,7 @@ void main(void)
     //Make the strength of the ripples taper off as they reach the edge
     float dampedHeight = rippleHeight * distanceCoefficient;
 
-    float distortion = cos(max( ((distanceFromOrigin * rippleQuantity) - scaledTime), -PI*100.0-PI_HALF));
+    float distortion = cos(((distanceFromOrigin * rippleQuantity) - time));
     
     vec2 sourcePixel = normalizedCoords + (distortion * dampedHeight);
         

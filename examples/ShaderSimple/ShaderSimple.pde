@@ -15,12 +15,11 @@ void setup() {
   // Init stage
   stage = new Stage(this, width, height);
 
-  // Inti shader
   shader1 = this.loadShader("ripple2D.glsl");
-  shader1.set("rippleHeight", 1.0f);
-  shader1.set("rippleQuantity", 1f);
-  shader1.set("rippleMaxDistance", 0.25f);  
-  shader1.set("rippleOrigin", 0.5f,  0.5f);
+  shader1.set("rippleHeight", 0.05f);
+  shader1.set("rippleQuantity", 100f);
+  shader1.set("rippleMaxDistance", 0.5f);
+  shader1.set("rippleOrigin", 0.5f, 0.5f);
 
   // Init Sprite
   layer = new Sprite(this, 400, 400);
@@ -46,9 +45,9 @@ void draw() {
   // Update and draw Stage
   stage.update();
   stage.draw(this);
-
+  
   // Update shader time
-  shader1.set("time",(millis()/1000f));
+  shader1.set("time", (millis()/100f));
 }
 
 void mouseMoved() {  
