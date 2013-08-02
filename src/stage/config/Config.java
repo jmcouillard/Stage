@@ -1,8 +1,6 @@
 package stage.config;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.HashMap;
 
 import processing.core.PApplet;

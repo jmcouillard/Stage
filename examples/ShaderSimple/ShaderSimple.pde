@@ -51,5 +51,7 @@ void draw() {
 }
 
 void mouseMoved() {  
+	
+  // Set ripple center to mouse position
   shader1.set("rippleOrigin", (float)mouseX/width, (float)mouseY/height);
 }

@@ -3,6 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/core.jar"/>
+	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/video.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/jmcouillard/Productions/10 - Java/libs/processing/macosx64"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt-natives-linux-amd64.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt-natives-linux-armv6hf.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt-natives-linux-i586.jar"/>
@@ -10,7 +15,11 @@
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt-natives-windows-amd64.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt-natives-windows-i586.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gstreamer-java.jar"/>
+	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/gstreamer-java.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/jmcouillard/Productions/10 - Java/libs/processing/macosx64"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/jl1.0.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/jna.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/jogl-all-natives-linux-amd64.jar"/>
@@ -24,6 +33,5 @@
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/minim.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/mp3spi1.9.4.jar"/>
 	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/net.jar"/>
-	<classpathentry kind="lib" path="/Users/jmcouillard/Productions/10 - Java/libs/processing/video.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
