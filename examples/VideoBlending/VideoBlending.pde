@@ -19,7 +19,7 @@ void setup() {
   video1.loop();
   stage.addChild(video1);
   
-  video2 = new VideoPlayer(this, "mdt_29970_06.MOV");
+  video2 = new VideoPlayer(this, "video2.mov");
   video2.setAnchor(160,120);
   video2.setBlendMode(ADD);
   video2.loop();
