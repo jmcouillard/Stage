@@ -2,3 +2,4 @@
 libs/processing/*
 libs/update processing.sh
 tmp
+/bin
