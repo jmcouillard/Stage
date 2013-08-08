@@ -50,7 +50,13 @@ layer.setBlendMode(ADD);
 
 ## Dependencies
 
-You will need the *Ani* Library in order to use *Stage*. This library is used to tween properties (greensock-like). You may find more information about the library here : [www.looksgood.de](http://www.looksgood.de/libraries/Ani/).
+You will need the *Ani* Library in order to use the *to* shurtcut. This library is used to tween properties (greensock-like). It make it pretty simple to do things such as :
+
+```
+layer.to(1, "x:"+mouseX+",y:"+mouseY);
+```
+
+You may find more information about the library here : [www.looksgood.de](http://www.looksgood.de/libraries/Ani/).
 
 ## Compatibilty
 
