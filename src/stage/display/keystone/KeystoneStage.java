@@ -41,7 +41,14 @@ public class KeystoneStage extends Stage {
 		super(p, w, h);
 
 		this.parent = p;
+		
+		// Make sure that the subdivision number is compatible
+		if(resolution%subdivisions != 0){
+			subdivisions -= resolution%subdivisions;
+			System.err.println("KeystoneStage : Sudivision must be a fraction of resolution. Setting to "+ subdivisions  +" to avoit errors.");
+		}
 
+		// Define values
 		this.div = Math.min(resolution / 2, subdivisions);
 		this.res = resolution + (1);
 		this.divRes = (float) resolution / div;
@@ -270,7 +277,7 @@ public class KeystoneStage extends Stage {
 
 		super.keyEvent(e);
 
-		println(e.getModifiers());
+		//println(e.getModifiers());
 		
 		// Test group transform
 		if (e.getModifiers() == 8 || e.getModifiers() == 9) groupTransfom = true;
