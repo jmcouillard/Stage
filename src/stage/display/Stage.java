@@ -12,6 +12,7 @@ public class Stage extends DisplayObject {
 
 	private int width;
 	private int height;
+	private int bgColor = 0x00000000;
 
 	public Stage(PApplet p, int w, int h) {
 		width = w;
@@ -30,7 +31,7 @@ public class Stage extends DisplayObject {
 		super.update();
 
 		graphic.beginDraw();
-		graphic.background(0x00000000);
+		graphic.background(bgColor);
 		if (frameCount > 1) {
 			super.draw(graphic);
 			drawBounds();
@@ -72,6 +73,10 @@ public class Stage extends DisplayObject {
 		super.setZSort(val);
 		if (val) graphic.hint(PGraphics.DISABLE_DEPTH_MASK);
 		else graphic.hint(PGraphics.ENABLE_DEPTH_MASK);
+	}
+	
+	public void setBgColor(int bgColor) {
+		this.bgColor = bgColor;
 	}
 
 	public void mouseEvent(MouseEvent e) {
