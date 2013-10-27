@@ -1,7 +1,7 @@
 Stage
 ==============
 
-Bringing up the speed and efficacity of AS3 to the power and flexibilty of Processing 2.0. Inspired by the *Stage* and *DisplayObject* relationship, *Stage* make it easier to create concrete application, using stunning effect and/or shaders, at a high framerate (it uses OpenGL out of the box).
+Bringing up the speed and efficacity of AS3 to the power and flexibilty of Processing 2.0. Inspired by the *Stage* and *DisplayObject* relationship of Flash, *Stage* make it easier to create concrete application, using stunning effect and/or shaders, at a high framerate (it uses OpenGL out of the box).
 
 ## Overview
 
@@ -85,4 +85,9 @@ You may find more information about the library here : [www.looksgood.de](http:/
 
 ## Compatibilty
 
-Current version has been tested and updated for Processing 2.0.1. It is known to be working on Windows 7 and OSX 10.8.
+Current version has been tested and updated for Processing 2.0.3. It is known to be working on Windows 7 and OSX 10.8.
+
+
+## Eclipse
+
+I strongly recommand using Eclipse as IDE to get more of this library. The auto-complete and hot-swapping features make it amazingly fun to use! This library integrates correctly and easily with Eclipse.
