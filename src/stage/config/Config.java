@@ -9,8 +9,10 @@ import processing.data.XML;
 public class Config {
 
 	private static XML xml;
+	private static boolean loaded = false;
 
 	static {
+		loaded = false;
 	}
 
 	public static void init(PApplet p) {
@@ -25,6 +27,7 @@ public class Config {
 
 		try {
 			Config.xml = p.loadXML("config.xml");
+			Config.loaded = true;
 		} catch (Exception ex) {
 			PApplet.println("Config error : " + ex);
 		}
@@ -56,8 +59,20 @@ public class Config {
 	}
 
 	public static void set(String key, int val) {
+		set(key, val, null);
+	}
+
+	public static void set(String key, int val, HashMap<String, Float> params) {
 		if (Config.xml.getChild(key) == null) Config.xml.addChild(key);
 		Config.xml.getChild(key).setContent(((Integer) val).toString());
+		if (params != null) Config.setParams(key, params);
+	}
+
+	public static void setParams(String key, HashMap<String, Float> params) {
+		if (Config.xml.getChild(key) == null) Config.xml.addChild(key);
+		for (String paramName : params.keySet()) {
+			Config.xml.getChild(key).setFloat(paramName, params.get(paramName));
+		}
 	}
 
 	public static HashMap<String, String> getObject(String key) {
@@ -81,6 +96,10 @@ public class Config {
 		} catch (Exception ex) {
 			PApplet.println("Config error : " + ex);
 		}
+	}
+
+	public static boolean isLoaded() {
+		return loaded;
 	}
 
 	public static String getPath(PApplet p) {
