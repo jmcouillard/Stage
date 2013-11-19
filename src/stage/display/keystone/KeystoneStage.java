@@ -4,7 +4,9 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
+import stage.config.Config;
 import stage.display.Stage;
 import processing.core.PApplet;
 import processing.core.PGraphics;
@@ -73,6 +75,8 @@ public class KeystoneStage extends Stage {
 
 	public void draw(PApplet p) {
 
+		if (calibration || Stage.frameCount == 1) p.background(bgColor);
+	
 		// Begin draw
 		p.beginShape(PApplet.QUADS);
 
@@ -292,6 +296,10 @@ public class KeystoneStage extends Stage {
 			calibration = !calibration;
 			dragHandle.x = 0;
 			dragHandle.y = 0;
+			if(!calibration) {
+				saveData();
+				parent.background(bgColor);
+			}
 
 		} else if (calibration) {
 
@@ -367,6 +375,22 @@ public class KeystoneStage extends Stage {
 		}
 	}
 
+	public void saveData() {
+		
+		if(!Config.isLoaded()) return;
+		
+		for (int i = 0; i < calibrationPoints.length; i++) {
+			
+			HashMap<String, Float> params = new HashMap<String, Float>();
+			params.put("x", mesh[calibrationPoints[i]].x);
+			params.put("y", mesh[calibrationPoints[i]].y);
+			
+			Config.setParams("keystone" + i, params);
+		}
+		
+		Config.save(parent);
+	}
+
 	public void saveData(String filename) {
 
 		File file = parent.dataFile(filename);
@@ -399,6 +423,5 @@ public class KeystoneStage extends Stage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 }

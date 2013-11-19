@@ -21,7 +21,7 @@ public class DisplayObject extends EventListener {
 	protected boolean firstUpdate = true;
 	protected boolean froceDraw = false;
 
-	public String name;
+	public String name = null;
 	protected boolean zSortEnabled = false;
 	private float zSortOffset = 0;
 
@@ -137,7 +137,13 @@ public class DisplayObject extends EventListener {
 	}
 
 	public void setName(String val) {
-		name = val;
+		if (name != null) System.err.println("Name already set for this layer (current name is " + name + ").");
+		else if (Stage.names.containsKey(name)) System.err.println("This name is already taken");
+		else {
+			name = val;
+			Stage.names.put(name, this);
+
+		}
 	}
 
 	public float getX() {
@@ -427,28 +433,28 @@ public class DisplayObject extends EventListener {
 		}
 	}
 
-	public void to(float duration, String properties, Easing ease) {
-		DisplayObject.to(this, duration, 0f, properties, ease, "");
+	public Ani[] to(float duration, String properties, Easing ease) {
+		return DisplayObject.to(this, duration, 0f, properties, ease, "");
 	}
 
-	public void to(float duration, String properties) {
-		DisplayObject.to(this, duration, 0f, properties, Easing.SINE_IN_OUT, "");
+	public Ani[] to(float duration, String properties) {
+		return DisplayObject.to(this, duration, 0f, properties, Easing.SINE_IN_OUT, "");
 	}
 
-	public void to(float duration, float delay, String properties) {
-		DisplayObject.to(this, duration, delay, properties, Easing.SINE_IN_OUT, "");
+	public Ani[] to(float duration, float delay, String properties) {
+		return DisplayObject.to(this, duration, delay, properties, Easing.SINE_IN_OUT, "");
 	}
 
-	public void to(float duration, float delay, String properties, Easing ease) {
-		DisplayObject.to(this, duration, delay, properties, ease, "");
+	public Ani[] to(float duration, float delay, String properties, Easing ease) {
+		return DisplayObject.to(this, duration, delay, properties, ease, "");
 	}
 
-	public void to(float duration, float delay, String properties, Easing ease, String callback) {
-		DisplayObject.to(this, duration, delay, properties, ease, callback);
+	public Ani[] to(float duration, float delay, String properties, Easing ease, String callback) {
+		return DisplayObject.to(this, duration, delay, properties, ease, callback);
 	}
 
-	public static void to(Object target, float duration, float delay, String properties, Easing ease, String callback) {
-		Ani.to(target, duration, delay, properties, ease, "onUpdate:invalidate," + callback);
+	public static Ani[] to(Object target, float duration, float delay, String properties, Easing ease, String callback) {
+		return Ani.to(target, duration, delay, properties, ease, "onUpdate:invalidate," + callback);
 	}
 
 }

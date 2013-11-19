@@ -66,8 +66,6 @@ public class Image extends BoundsDisplayObject {
 	}
 
 	public void draw(PGraphics dest) {
-
-//		set
 		
 		if (isVisible() && file != null) {
 			dest.tint(tint, getFinalAlpha() * 255);

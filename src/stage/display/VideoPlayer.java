@@ -21,13 +21,17 @@ public class VideoPlayer extends BoundsDisplayObject {
 	private boolean firstFrame = true;
 	private int blendMode = PGraphics.BLEND;
 
-	private Object callbackTarget;
-	private Method callbackMethod;
-	private boolean customLoop;
+	private Object endCallbackTarget;
+	private Method endCallbackMethod;
+
+	private Object readyCallbackTarget;
+	private Method readyCallbackMethod;
+
+	private boolean looping;
 
 	public VideoPlayer(PApplet p) {
 		this.p = p;
-		this.customLoop = false;
+		this.looping = false;
 		if (mov != null) mov.dispose();
 	}
 
@@ -41,13 +45,13 @@ public class VideoPlayer extends BoundsDisplayObject {
 			mov.stop();
 			mov.dispose();
 		}
-		callbackMethod = null;
-		callbackTarget = null;
-		mov = new Movie(p, file);
+		endCallbackMethod = null;
+		endCallbackTarget = null;
+		mov = new Movie(p, file);		
 	}
 
 	public void draw(PGraphics dest) {
-		
+
 		dest.tint(255, getFinalAlpha() * 255f);
 		dest.pushMatrix();
 		dest.translate(x, y);
@@ -75,7 +79,9 @@ public class VideoPlayer extends BoundsDisplayObject {
 				bounds = new Bounds(width, height);
 				invalidate();
 				firstFrame = false;
+				
 				dispatchEvent(new CustomEvent("firstFrame"));
+				readyEvent();
 			}
 		}
 		return mov;
@@ -97,12 +103,12 @@ public class VideoPlayer extends BoundsDisplayObject {
 		});
 	}
 
+	//	public void loop() {
+	//		mov.loop();
+	//	}
+
 	public void loop() {
-		mov.loop();
-	}
-	
-	public void customLoop() {
-		customLoop = true;
+		looping = true;
 		play();
 	}
 
@@ -113,43 +119,54 @@ public class VideoPlayer extends BoundsDisplayObject {
 	public void pause() {
 		mov.pause();
 	}
-	
+
 	public void restart() {
 		mov.stop();
 		mov.jump(0);
 		mov.play();
 	}
 
-	public void setCallback(Object target, Method callback) {
-		callbackTarget = target;
-		callbackMethod = callback;
-	}
-	
 	public void setCallback(Object target, String callback) {
-		callbackTarget = target;
+		endCallbackTarget = target;
 		try {
-			callbackMethod = target.getClass().getMethod(callback);
+			endCallbackMethod = target.getClass().getMethod(callback);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	public void movieEOSEvent() {
+	public void setReadyCallback(Object target, String callback) {
+		readyCallbackTarget = target;
+		try {
+			readyCallbackMethod = target.getClass().getMethod(callback);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
-		// Get target
-		// Class<?> c = callbackTarget.getClass();
-
-		if (callbackMethod != null) {
+	public void readyEvent() {
+		if (readyCallbackMethod != null) {
 			try {
-				if (callbackMethod.getParameterTypes().length == 0) callbackMethod.invoke(callbackTarget, new Object[] {});
-				else callbackMethod.invoke(callbackTarget, new Object[] { null });
+				if (readyCallbackMethod.getParameterTypes().length == 0) readyCallbackMethod.invoke(readyCallbackTarget, new Object[] {});
+				else readyCallbackMethod.invoke(endCallbackTarget, new Object[] { null });
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
-		
-		if (customLoop) {
-			println("custom loop eos");
+	}
+
+	public void movieEOSEvent() {
+
+		if (endCallbackMethod != null) {
+			try {
+				if (endCallbackMethod.getParameterTypes().length == 0) endCallbackMethod.invoke(endCallbackTarget, new Object[] {});
+				else endCallbackMethod.invoke(endCallbackTarget, new Object[] { null });
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		if (looping) {
 			restart();
 		}
 	}

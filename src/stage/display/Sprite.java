@@ -25,6 +25,7 @@ public class Sprite extends BoundsDisplayObject implements PConstants {
 	private PMatrix3D drawMatrix;
 
 	// Shader variables
+	// private PShader shader;
 	protected ArrayList<PGraphicsOpenGL> passes;
 	private boolean redrawOriginalOver;
 	private int redrawCount;

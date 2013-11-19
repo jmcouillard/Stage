@@ -1,5 +1,7 @@
 package stage.display;
 
+import java.util.HashMap;
+
 import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.event.KeyEvent;
@@ -8,11 +10,15 @@ import processing.event.MouseEvent;
 public class Stage extends DisplayObject {
 
 	public static long frameCount;
+	public static long startTime;
+	
 	public PGraphics graphic;
 
 	private int width;
 	private int height;
-	private int bgColor = 0x00000000;
+	protected int bgColor = 0x00000000;
+	
+	public static HashMap<String, DisplayObject> names;
 
 	public Stage(PApplet p, int w, int h) {
 		width = w;
@@ -22,6 +28,11 @@ public class Stage extends DisplayObject {
 		graphic.smooth(8);
 		graphic.endDraw();
 
+		//
+		Stage.names = new HashMap<String, DisplayObject>();
+		
+		startTime = System.currentTimeMillis();
+		
 		// Events
 		p.registerMethod("mouseEvent", this);
 		p.registerMethod("keyEvent", this);
@@ -50,6 +61,7 @@ public class Stage extends DisplayObject {
 	}
 
 	public void draw(PApplet p) {
+		if(Stage.frameCount == 1) p.background(bgColor);
 		p.pushMatrix();
 		p.translate(width / 2, height / 2);
 		p.pushMatrix();
@@ -59,6 +71,10 @@ public class Stage extends DisplayObject {
 		p.popMatrix();
 		p.popMatrix();
 
+	}
+
+	public DisplayObject getChildByName(String name) {
+		return Stage.names.get(name);
 	}
 
 	public int getWidth() {
