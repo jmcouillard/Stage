@@ -67,6 +67,7 @@ public class Stage extends DisplayObject {
 		p.pushMatrix();
 		p.rotate(angle);
 		p.translate(-width / 2, -height / 2);
+		p.scale(scaleX, scaleY, scaleZ);
 		p.image(graphic, 0, 0);
 		p.popMatrix();
 		p.popMatrix();
