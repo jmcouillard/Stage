@@ -73,7 +73,7 @@ public class TextField extends Sprite {
 
 			// Settings
 			dest.textFont(font);
-			dest.textSize(fontSize * .95f);
+			dest.textSize(fontSize);
 			dest.textAlign(alignH, alignV);
 			if (lineSpacing != -1) dest.textLeading(lineSpacing);
 
@@ -82,7 +82,7 @@ public class TextField extends Sprite {
 			dest.clear();
 			dest.background(bgColor, 0f);
 			dest.fill(color);
-			dest.text(text, 0, fontSize * 0.25f, width, height - dest.textDescent() - dest.textDescent());
+			dest.text(text, 0, 0, width, height - dest.textDescent() - dest.textDescent());
 			dest.endDraw();
 			textInvalid = false;
 
@@ -108,6 +108,8 @@ public class TextField extends Sprite {
 	}
 
 	public void setText(String text) {
+
+		text = text.replace("\\n", "\n");
 
 		if (this.text.compareTo(text) != 0) {
 			this.text = text;
