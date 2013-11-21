@@ -22,9 +22,6 @@ void setup() {
 }
 
 void draw() {
-	
-  // Clear background
-  background(0);
   
   // Update and draw Stage
   stage.update();
