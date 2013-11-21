@@ -63,7 +63,7 @@ public class TextField extends Sprite {
 		if (isTextInvalid()) {
 
 			if (font == null) {
-				Utils.error("Can't render TextField without defining the font.");
+				Utils.error("Stage : Can't render TextField without defining the font.");
 				return;
 			}
 
@@ -96,6 +96,7 @@ public class TextField extends Sprite {
 			// Reset text width
 			tw = -1;
 			th = -1;
+			linesCount = -1;
 		}
 
 		super.update();
@@ -191,12 +192,12 @@ public class TextField extends Sprite {
 	public float getLineCount() {
 		if (linesCount < 0) {
 			String[] words = PApplet.split(text, " ");
-			int breaklines = PApplet.split(text, "\n").length;
-			linesCount = breaklines;
+			// int breaklines = PApplet.split(text, "\n").length;
+			linesCount = 1;
 			float x = 0;
 			for (int i = 0; i < words.length; i++) {
 				float tw = graphic.textWidth(words[i] + " ");
-				if (x + tw > width) {
+				if (x + tw > width || words[i].contains("\n")) {
 					x = tw;
 					linesCount++;
 				} else {
