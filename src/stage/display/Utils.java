@@ -31,6 +31,6 @@ public class Utils {
 
 	
 	public static void error(String message) {
-		System.err.println("FlashLike : " + message);
+		System.err.println("Stage : " + message);
 	}
 }
