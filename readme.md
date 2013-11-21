@@ -54,7 +54,7 @@ layer.setBlendMode(ADD);
 
 ## Features
 
-Each of the following features have an example in the library to  
+Each of the following features have one or multiple example(s) included in the library to help you understand and use it.
 
 - **Image** : Create a sprite by loading an image.
 
@@ -72,7 +72,7 @@ Each of the following features have an example in the library to
 
 - **Events** : Add event listeners like you espect them to be (MouseEvent, KeyboardEvent or CustomEvent). This allow communication between different children levels of the stage.
 
-- **Textfield** : More details coming soon.
+- **Textfield** : Textfield with color, size, font and aligne properties. A background fonts manager utility make sure that fonts are only loaded once, and saved correctly in memory.
 
 - **Websocket control** : Control your stage using a simple API with Stage-Websocket plugin. Available at [https://github.com/jmcouillard/Stage-Websocket](https://github.com/jmcouillard/Stage-Websocket).
 
