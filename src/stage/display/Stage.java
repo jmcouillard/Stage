@@ -45,17 +45,17 @@ public class Stage extends DisplayObject {
 		graphic.background(bgColor);
 		if (frameCount > 1) {
 			super.draw(graphic);
-			drawBounds();
+//			drawBounds(graphic);
 		}
 		graphic.endDraw();
 
 		frameCount++;
 	}
 
-	public void drawBounds() {
+	public void drawBounds(PGraphics dest) {
 		for (DisplayObject child : children) {
 			if (child instanceof BoundsDisplayObject) {
-				((BoundsDisplayObject) child).drawBounds(graphic);
+				((BoundsDisplayObject) child).drawBounds(dest);
 			}
 		}
 	}
@@ -71,7 +71,9 @@ public class Stage extends DisplayObject {
 		p.image(graphic, 0, 0);
 		p.popMatrix();
 		p.popMatrix();
-
+		
+		// Draw bounds
+		drawBounds(p.g);
 	}
 
 	public DisplayObject getChildByName(String name) {
