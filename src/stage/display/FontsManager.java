@@ -20,24 +20,24 @@ public class FontsManager {
 		createCharset();
 	}
 	
-	public static PFont get(String fontName, int fontSize) {
+	public static PFont get(String name, int fontSize) {
 		
-		String key = fontName.toLowerCase()+Integer.toString(fontSize);
+		String key = name.toLowerCase()+Integer.toString(fontSize);
 		
 		if(FontsManager.fontsLibrary.containsKey(key)) {
 			return FontsManager.fontsLibrary.get(key);				
 		} else {
-			PFont font = p.createFont(fontName, fontSize, true, mCharset);
+			PFont font = p.createFont(name, fontSize, true, mCharset);
 			FontsManager.fontsLibrary.put(key, font);
 			return font;
 		}
 	}
 
 	private static void createCharset() {
-
+		
 		int count = 0;
 		int index = 0;
-		char specials[] = new char[] { 'é', 'É', 'è', 'È', 'à', 'À', 'Ù', 'ù', 'Ê', 'ê', 'â', 'Â', '₂', '₄', 'º', '«', '»', 'ï', 'Ï', '’' };
+		char specials[] = new char[] { 'é', 'É', 'è', 'È', 'à', 'À', 'Ù', 'ù', 'Ê', 'ê', 'â', 'Â', '₂', '₄', 'º', '«', '»', 'ï', 'Ï', '’', '™' };
 
 		count += (0x007F - 0x0000 + 1);
 		count += specials.length;
