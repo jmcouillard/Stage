@@ -99,9 +99,12 @@ public class Stage extends DisplayObject {
 	}
 
 	public void mouseEvent(MouseEvent e) {
+		if(Stage.frameCount<1) return;
 		if (e.getAction() == MouseEvent.MOVE) dispatchEvent(new stage.events.MouseEvent(stage.events.MouseEvent.MOUSE_MOVE, e.getX(), e.getY()));
+		if (e.getAction() == MouseEvent.DRAG) dispatchEvent(new stage.events.MouseEvent(stage.events.MouseEvent.MOUSE_MOVE, e.getX(), e.getY()));
 		if (e.getAction() == MouseEvent.PRESS) dispatchEvent(new stage.events.MouseEvent(stage.events.MouseEvent.MOUSE_DOWN, e.getX(), e.getY()));
 		if (e.getAction() == MouseEvent.CLICK) dispatchEvent(new stage.events.MouseEvent(stage.events.MouseEvent.MOUSE_CLICK, e.getX(), e.getY()));
+		if (e.getAction() == MouseEvent.RELEASE) dispatchEvent(new stage.events.MouseEvent(stage.events.MouseEvent.MOUSE_UP, e.getX(), e.getY()));
 	}
 
 	public void keyEvent(KeyEvent e) {
