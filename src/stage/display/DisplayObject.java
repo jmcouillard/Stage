@@ -286,6 +286,18 @@ public class DisplayObject extends EventListener {
 		return angle;
 	}
 
+	public float getRotationX() {
+		return angleX;
+	}
+
+	public float getRotationY() {
+		return angleY;
+	}
+
+	public float getRotationZ() {
+		return angle;
+	}
+
 	public float getFinalRotation() {
 		if (parent != null) return parent.getFinalRotation() + angle;
 		else return angle;
