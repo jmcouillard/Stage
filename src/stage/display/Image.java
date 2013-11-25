@@ -26,29 +26,30 @@ public class Image extends BoundsDisplayObject {
 		this.p = p;
 		loadImage(file, false);
 	}
-	
+
 	public Image(PApplet p, String file, boolean async) {
 		super();
 		this.p = p;
 		loadImage(file, async);
 	}
-	
-	public void loadImage(String file, boolean async) {
 
-		this.file = file;
+	public void loadImage(String file, boolean async) {
 
 		if (!Image.imageLibrary.containsKey(file)) {
 			if (async) {
+				//	println("Loading async image : " + file);
 				Image.imageLibrary.put(file, p.requestImage(file));
-				println("Loading async image : " + file);
+				this.file = file;
 			} else {
+				//	println("Loading image : " + file);
 				Image.imageLibrary.put(file, p.loadImage(file));
-				println("Loading image : " + file);
+				this.file = file;
 				width = getImage().width + padding * 2;
 				height = getImage().height + padding * 2;
 				invalidate();
 			}
 		} else {
+			this.file = file;
 			width = getImage().width + padding * 2;
 			height = getImage().height + padding * 2;
 		}
@@ -56,7 +57,7 @@ public class Image extends BoundsDisplayObject {
 
 	public void update() {
 
-		if (width == 0 && getImage().width != 0) {
+		if (width == 0 && getImage() != null && getImage().width != 0) {
 			width = getImage().width + padding * 2;
 			height = getImage().height + padding * 2;
 			invalidate();
@@ -66,7 +67,7 @@ public class Image extends BoundsDisplayObject {
 	}
 
 	public void draw(PGraphics dest) {
-		
+
 		if (isVisible() && file != null) {
 			dest.tint(tint, getFinalAlpha() * 255);
 			dest.pushMatrix();
