@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Event {
 
 	/** Map of registered methods, stored by name. */
+	@SuppressWarnings("rawtypes")
 	public static HashMap<String, Class> registerEventClass = new HashMap<String, Class>();
 
 	private String type = "";
@@ -45,10 +46,12 @@ public class Event {
 		return target;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void addEventClass(String listener, Class c) {		
 		if(!registerEventClass.containsKey(listener)) registerEventClass.put(listener, c);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static Class getEventClass(String listener) {
 		return registerEventClass.containsKey(listener) ? registerEventClass.get(listener) : Event.class;
 	}

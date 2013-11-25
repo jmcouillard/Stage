@@ -5,6 +5,7 @@ public class MouseEvent extends Event {
 	public static String MOUSE_MOVE = "mousemouve";
 	public static String MOUSE_CLICK = "mouseclick";
 	public static String MOUSE_DOWN = "mousedown";
+	public static String MOUSE_UP = "mouseup";
 	
 	public MouseEvent(String type, int mouseX, int mouseY) {
 		super(type);
@@ -16,6 +17,7 @@ public class MouseEvent extends Event {
 		addEventClass(MOUSE_MOVE, MouseEvent.class);
 		addEventClass(MOUSE_CLICK, MouseEvent.class);
 		addEventClass(MOUSE_DOWN, MouseEvent.class);
+		addEventClass(MOUSE_UP, MouseEvent.class);
 	}
 	
 }
