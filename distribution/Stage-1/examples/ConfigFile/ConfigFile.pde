@@ -1,5 +1,6 @@
 import stage.display.Stage;
 import stage.display.Sprite;
+import stage.config.*;
 
 Stage stage;
 Sprite layer;
@@ -12,13 +13,16 @@ void setup() {
   // Init stage
   stage = new Stage(this, width, height);
 
+  // Init config
+  Config.init(this);
+
   // Init Sprite
   layer = new Sprite(this, 200, 200);
   layer.setX(200);
   layer.setY(200);
   layer.centerAnchor();
   layer.graphic.beginDraw();
-  layer.graphic.fill(0xFFFF0000);
+  layer.graphic.fill(Config.getInt("red"), Config.getInt("green"), Config.getInt("blue"));
   layer.graphic.rect(0,0,200,200);
   layer.graphic.endDraw();
   stage.addChild(layer);
@@ -31,7 +35,3 @@ void draw() {
   stage.draw(this);
 }
 
-void mouseMoved() {
-  layer.setX(mouseX);
-  layer.setY(mouseY);
-}

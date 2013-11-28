@@ -1,5 +1,6 @@
 import stage.display.Stage;
 import stage.display.Sprite;
+import stage.events.MouseEvent;
 
 Stage stage;
 Sprite layer;
@@ -22,6 +23,8 @@ void setup() {
   layer.graphic.rect(0,0,200,200);
   layer.graphic.endDraw();
   stage.addChild(layer);
+  
+  layer.addEventListener(MouseEvent.MOUSE_CLICK, this, "layerClick");
 }
 
 void draw() {
@@ -31,7 +34,14 @@ void draw() {
   stage.draw(this);
 }
 
-void mouseMoved() {
-  layer.setX(mouseX);
-  layer.setY(mouseY);
+void layerClick(MouseEvent e) {
+
+  if(layer.getBounds().isOver(e.screenX, e.screenY)) {
+    layer.graphic.beginDraw();
+    layer.graphic.fill(255f, random(255f), random(255f), random(255f));
+    layer.graphic.rect(0,0,200,200);
+    layer.graphic.endDraw();
+    println("Click!");
+  }
+  
 }
