@@ -4,3 +4,4 @@ libs/update processing.sh
 tmp
 /bin
 /distribution
+/distribution/*
