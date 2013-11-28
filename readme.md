@@ -72,13 +72,15 @@ Each of the following features have one or multiple example(s) included in the l
 
 - **Events** : Add event listeners like you espect them to be (MouseEvent, KeyboardEvent or CustomEvent). This allow communication between different children levels of the stage.
 
-- **Textfield** : Textfield with color, size, font and aligne properties. A background fonts manager utility make sure that fonts are only loaded once, and saved correctly in memory.
+- **Textfield** : Textfield with color, size, font and align properties. Additionaly, a font manager utility (that runs *silently*) make sure that fonts are only loaded once, and saved correctly in memory. *Limitations:* there is not htmlText equivalent, or anything that allow you to mix fonts (ex. put a single word in bold).
 
 - **Websocket control** : Control your stage using a simple API with Stage-Websocket plugin. Available at [https://github.com/jmcouillard/Stage-Websocket](https://github.com/jmcouillard/Stage-Websocket).
 
 ## Dependencies
 
-You will need the *Ani* Library in order to use the *to* shurtcut. This library is used to tween properties (greensock-like). It make it pretty simple to do things such as :
+### Ani
+
+You will need the *Ani* Library in order to use the `to()` shurtcut. This library is used to tween properties (greensock-like). It make it pretty simple to do things such as :
 
 ```
 layer.to(1, "x:"+mouseX+",y:"+mouseY);
@@ -92,13 +94,18 @@ Ani.init(this);
 
 You may find more information about the library here : [www.looksgood.de](http://www.looksgood.de/libraries/Ani/).
 
+### Java Advanced Imaging
+
+If you use *KeystoneStage*, you will need to have jai_core.jar in your classpath. It is included in the lib folder. If you want, you can have more information or download another version here [link](http://mvnrepository.com/artifact/javax.media/jai_core).
+
 ## Compatibilty
 
 Current version has been tested and updated for Processing 2.0.3. It is known to be working on Windows 7 and OSX 10.8.
 
-## Strange things
+## Known issues
 
-I still don't have understood why, but if you do a `background(0)` (or any other color) before drawing the stage, you will get a wrong alpha compositing. So, in orther to avoid that, simply **don't** clear background in `draw()`.
+- I still don't have understood why, but if you do a `background(0)` (or any other color) before drawing the stage, you will get a wrong alpha compositing. So, in orther to avoid that, simply **don't** clear background in `draw()`. This has been noticed with Processing 2.0.3.
+- There is an issue with Stage and all Processing versions prior to 2.1 if you are using Intel HD Graphics (at least on OSX). You will run into [Processing issue #1983](https://github.com/processing/processing/issues/1983) issue, graphics will be messed up, and you sketck will be slower. To avoid it, simply user Processing 2.1 or higher.
 
 ## Eclipse
 
